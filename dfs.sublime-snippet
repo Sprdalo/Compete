@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+
+	//Slozenost O(|V| + |E|)
+
+	v<int> g[1000010];
+	vb v;
+	void dfs(int n){
+		v[n] = true;
+		for(auto& i : g[n]){
+			if(v[i]) { continue; }
+			dfs(i);
+		}
+	}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dfs</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

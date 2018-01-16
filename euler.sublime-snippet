@@ -1,0 +1,29 @@
+<snippet>
+	<content><![CDATA[
+
+//Broj integera [1, n] koji su uzajamno prosti sa n
+//Slozenost O(sqrt(n))
+int phi(int n){
+	int res = n;
+
+	for (int i = 2; i * i <= n; ++i){
+		if (!(n % i)){
+			while(!(n % i)){
+				n /= i;
+			}
+			res -= res/ i;
+		}
+	}
+
+	if (n > 1)
+		res -= res / n;
+
+	return res;
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>euler</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

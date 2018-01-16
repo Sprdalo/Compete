@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+	//Radijani:
+	//Ugao izmedju vektora (x, y) i x ose(pozitivnim delom):
+	atan2(y, x);
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ugao_vektor_xosa</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

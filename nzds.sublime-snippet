@@ -1,0 +1,26 @@
+<snippet>
+	<content><![CDATA[
+
+	//Slozenost - nije sigurno
+	//O(log(a * b))
+
+int nzd(int a, int b){
+
+		if (!a || !b)
+			return a + b;
+
+		if (a > b)
+			switch(a, b);
+
+		return(a, b % a);
+	}
+
+	int nzs(int a, int b){
+		return (a * b) / nzd(a, b);
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>nzds</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

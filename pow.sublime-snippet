@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+
+//Slozenost O(log k)
+
+ll pow(ll a, ll k){
+    if (k == 0)
+    return 1;
+
+    if (k == 1)
+    return a;
+
+    ll tmp = pow(a, k / 2);
+    tmp = tmp * tmp;
+    if (k & 1)
+    tmp = tmp * a;
+    return tmp;
+}	
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>pow</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

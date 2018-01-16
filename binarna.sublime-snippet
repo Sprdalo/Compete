@@ -1,0 +1,37 @@
+<snippet>
+	<content><![CDATA[
+
+		//Slozenost O(log n)
+
+int binarna(vector<int> a, int k){
+	int n = a.size();
+	int low = 0, high = n - 1; 
+	bool b;
+
+	int mid;
+	while(low <= high){
+		mid = (low + high) / 2;
+
+		if (a[mid] == k){
+			b = true;
+			break;
+		}
+
+		if (k < a[mid])
+			high = mid - 1;
+		else
+			low = mid + 1;
+	}
+
+	if (b)
+		return mid;
+	else
+		return -1;
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>binarna</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

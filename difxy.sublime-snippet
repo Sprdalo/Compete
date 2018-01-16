@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+int dif(int a, int b, int x, int y){
+	return (a - x) * (a - x) + (b - y) * (b - y);
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>difxy</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

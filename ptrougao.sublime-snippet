@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+double ptorugao(int x1, int y1, int x2, int y2, double teta){
+	//Ako je povrsina 0 onda su tacke A B C kolinearne
+
+	return (absd(x1, y1) * absd(x2, y2) * sin(teta)) / 2.0;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ptrougao</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

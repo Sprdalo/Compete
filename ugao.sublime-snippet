@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+double ugao_izmedju_vectora_rad(int x1, int y1, int x2, int y2){
+	double dot = x1*x2 + y1*y2      # dot product between [x1, y1] and [x2, y2]
+	double det = x1*y2 - y1*x2      # determinant
+	double angle = atan2(det, dot)  # atan2(y, x) or atan2(sin, cos)
+
+	return angle;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ugao</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

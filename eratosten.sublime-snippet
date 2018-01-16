@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+
+	int lp[n + 1];
+	vi pr;
+
+	for (int i = 2; i <= n; ++i){
+		if(!lp[i]){
+			lp[i] = i;
+			pr.push_back(i);
+		}
+		for (int j = 0; j < (int)pr.size() && pr[j] <= lp[j] && i * pr[j] <= n; ++j)
+			lp[i * pr[j]] = pr[j];
+	}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>eratosten</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
