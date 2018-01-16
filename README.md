@@ -1,3 +1,3 @@
 Not everything is originaly mine, but many things are...
 
-Open for new ideas and changes :)
+Open for new ideas and changes, **especially geometry part** :)
