@@ -1,1 +1,3 @@
 Not everything is originaly mine, but many things are...
+
+Open for new ideas and changes :)
