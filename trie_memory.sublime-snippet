@@ -1,0 +1,81 @@
+<snippet>
+	<content><![CDATA[
+		template<int MAXN>
+struct trie{
+	struct node{
+		bool flag;
+		char data;		
+	};
+
+	node cvor[MAXN];
+	vector<int> e[MAXN];
+	int cur;
+
+	trie(){
+		cur = 0;
+		cvor[cur++] = {1, '\0'};
+	}
+
+	void add_node(int p, node c){
+		cvor[cur] = c;
+		e[p].push_back(cur);
+		++cur;
+
+	}
+
+	void add(string s){
+		int k = 0;
+		for (int i = 0; i < s.length(); ++i){
+			bool test = false;
+			int x = -1;
+
+			for(auto& j  : e[k]){
+				if (cvor[j].data == s[i]){
+					test = true;
+					x = j;
+					break;
+				}
+			}
+
+			if (test){
+				k = x;
+			} else {
+				add_node(k, {0, s[i]});
+				k = cur - 1;
+			}
+		}
+
+		cvor[k].flag = 1; 
+	}
+
+	bool find(string s){
+		int k = 0;
+		for (int i = 0; i < s.length(); ++i){
+			bool test = false;
+			int x = -1;
+
+			for(auto& j  : e[k]){
+				if (cvor[j].data == s[i]){
+					test = true;
+					x = j;
+					break;
+				}
+			}
+
+			if (test){
+				k = x;
+			} else {
+				return false;
+			}
+		}
+
+		return cvor[k].flag;
+	}
+};
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>trie_memory</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
