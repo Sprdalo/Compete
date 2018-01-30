@@ -1,0 +1,60 @@
+<snippet>
+	<content><![CDATA[
+
+template<int MAXN>
+struct trie{
+	struct node{
+		bool flag;
+		char data;
+		map<char, int> member;
+	};
+
+	node nodes[MAXN];
+	int cur;
+
+	trie(){
+		cur = 1;
+		nodes[cur++] = {1, '\0'};
+	}
+
+	void add_node(int p, node c){
+		nodes[cur] = c;
+		nodes[p].member[c.data] = cur;
+		++cur;
+
+	}
+
+	void add(string s){
+		int k = 1;
+		for (int i = 0; i < s.length(); ++i){
+			if(nodes[k].member[s[i]] != 0){
+				k = nodes[k].member[s[i]];
+			}else{
+				add_node(k, {0, s[i]});
+				k = cur-1;
+			}
+		}
+
+		nodes[k].flag = 1; 
+	}
+
+	bool find(string s){
+		int k = 1;
+		for (int i = 0; i < s.length(); ++i){
+			if(nodes[k].member[s[i]] != 0){
+				k = nodes[k].member[s[i]];
+			}else{
+				return false;
+			}
+		}
+
+		return nodes[k].flag;
+	}
+};
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>trie</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
