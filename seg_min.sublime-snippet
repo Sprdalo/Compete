@@ -1,0 +1,68 @@
+<snippet>
+	<content><![CDATA[
+//Pri ucitavanju n parametra
+//Podesiti k = nextpowerof2(eventualno * 2)
+//--k
+
+unsigned int nextPowerOf2(unsigned int n)
+{
+  unsigned cnt = 0;
+
+  if (n && !(n&(n-1)))
+    return n;
+
+  while( n != 0)
+  {
+    n  >>= 1;
+    cnt += 1;
+  }
+
+  return 1 << cnt;
+}
+
+int k;
+template<int maxn>
+struct segment_tree{
+
+	int segTree[4 * maxn];
+
+	void init(vi input, int low, int high, int pos){
+		if (low == high){
+			segTree[pos] = input[low];
+			return;
+		}
+
+		int mid = (low + high) / 2;
+		init(input, low, mid, 2 * pos + 1);
+		init(input, mid + 1, high, 2 * pos + 2);
+
+		segTree[pos] = min(segTree[2 * pos + 1], segTree[2 * pos + 2]);
+	}
+
+	int rangeMinQuery(int qlow, int qhigh, int low, int high, int pos){
+		if (qlow <= low && qhigh >= high)
+			return segTree[pos];
+
+		if (qlow > high || qhigh < low)
+			return INT32_MAX;
+
+		int mid = (low + high) / 2;
+		return min(rangeMinQuery(qlow, qhigh, low, mid, 2 * pos + 1), rangeMinQuery(qlow, qhigh, mid + 1, high, 2 * pos + 2));
+	}
+
+    void set(int pos, int val) {
+		pos += maxn - 1;
+		segTree[pos] = val;
+
+		while (pos > 1) {
+			pos >>= 1;
+			segTree[pos] = min(segTree[2*pos], segTree[2*pos+1]);
+		}
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>seg_min</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
