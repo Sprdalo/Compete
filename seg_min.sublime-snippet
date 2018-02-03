@@ -33,9 +33,9 @@ struct segment_tree{
 		pos += maxn - 1;
 		segTree[pos] = val;
 
-		while (pos > 1) {
+		while (pos > 0) {
 			pos >>= 1;
-			segTree[pos] = min(segTree[2*pos], segTree[2*pos+1]);
+			segTree[pos] = min(segTree[2*pos+1], segTree[2*pos+2]);
 		}
 	}
 };
