@@ -10,9 +10,9 @@ int nzd(int a, int b){
 			return a + b;
 
 		if (a > b)
-			switch(a, b);
+			swap(a, b);
 
-		return(a, b % a);
+		return nzd(a, b % a);
 	}
 
 	int nzs(int a, int b){
