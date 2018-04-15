@@ -5,12 +5,16 @@
 using namespace std;
 
 typedef long long ll;
+typedef pair<int, int> pi;
+typedef pair<ll, ll> pl;
 typedef vector<int> vi;
 typedef vector<ll> vl;
 typedef vector<double> vd;
 typedef vector<bool> vb;
 typedef vector<char> vc;
 typedef vector<string> vs;
+typedef vector<pi> vp;
+typedef vector<pl> vpl;
 
 int main()
 {
