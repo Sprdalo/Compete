@@ -1,0 +1,61 @@
+<snippet>
+	<content><![CDATA[
+template<int MAXN>
+struct segtr{
+	//To change the purpose of the segtree just redefine the operators
+	struct node{
+		int x;
+		node(int x = 0) : x(x) {}
+		node& operator+= (const node& other){
+			x += other.x;
+			return *this;
+		}
+		node operator+ (const node& other){
+			node tmp = *this;
+			return tmp += other;
+		}
+	};
+	
+	node a[2*MAXN];
+	
+	//Initialize the array
+	void init(){
+		for(int i = 1; i <= MAXN; ++i){
+			a[i+MAXN-1] = node{};
+		}
+		for(int i = MAXN-1; i > 0; --i){
+			a[i] = a[2*i] + a[2*i+1];
+		}
+	}
+	
+	//Sets the node and updates the tree
+	void set(int pos, node val){
+		pos += MAXN-1;
+		a[pos] = val;
+		
+		while(pos > 1){
+			pos /= 2;
+			a[pos] = a[2*pos] + a[2*pos+1];
+		}
+	}
+	inline void add(int pos, node val){ //Just forwards to set
+		set(pos, node{a[pos+MAXN-1]+val});
+	}
+	
+	//Gets the range query
+	node get(int l, int r, int pos = 1, int rl = 1, int rr = MAXN){
+		if(r < rl || rr < l){ return node{}; }
+		if(l <= rl && rr <= r){ return a[pos]; }
+		
+		int rm = (rl+rr)/2;
+		return get(l, r, 2*pos, rl, rm) + get(l, r, 2*pos+1, rm+1, rr);
+	}
+	
+};
+segtr<131072> tr;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>segtree</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>
