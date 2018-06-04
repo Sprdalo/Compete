@@ -1,0 +1,23 @@
+<snippet>
+	<content><![CDATA[
+//EED return gcd(a,b) and (through reference) values of x and y
+int gcd(int a, int b, int& x, int& y){
+	if (a == 0){
+		x = 0;			//Infinite many solutions
+		y = 1;
+		return b;
+	}
+
+	int x1, y1;
+	int g = gcd(b % a, a , x1, y1);
+	x1 = y1 - (b / a) * x1;
+	y = x1;
+
+	return g;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>euclidean_eed</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
