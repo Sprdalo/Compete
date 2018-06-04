@@ -1,0 +1,54 @@
+<snippet>
+	<content><![CDATA[
+		/* BST KOJI PODRZAVA SAMO ADD I FIND
+		   NIJE DETALJNO TESTIRAN BTW */
+
+template<int n>
+struct bst{
+	int a[n];
+
+	void init(){
+		for (int i = 0; i < n; ++i)
+			a[i] = -1;
+	}
+
+	void add(int v){
+		int c = 0;
+		while(1){
+
+			if (a[c] == -1){
+				a[c] = v;
+				return;
+			}
+
+			if (a[c] >= v){
+				c = 2 * c + 1;
+			} else
+				c = 2 * c + 2;
+		}	
+	}
+
+	bool find(int v){
+		int c = 0;
+		while(1){
+			if (a[c] == v)
+				return 1;
+
+			if (a[c] == -1){
+				return 0;
+			}
+
+			if (a[c] > v){
+				c = 2 * c + 1;
+			} else
+				c = 2 * c + 2;
+		}		
+	}
+};
+bst<131072> tr;	
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>bst_primitive</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
