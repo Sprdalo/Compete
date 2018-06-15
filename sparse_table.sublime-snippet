@@ -1,0 +1,49 @@
+<snippet>
+	<content><![CDATA[
+		template<int maxn>
+struct sparse{
+
+	int logaritam[maxn + 1], st[maxn][25], rmq[maxn][25], k = 25;
+
+	void init(vi a){
+		logaritam[1] = 0;
+		for (int i = 2; i < maxn; ++i)
+			logaritam[i] = logaritam[i / 2] + 1;
+
+		for (int i = 0; i < a.size(); ++i){
+			st[i][0] = a[i];
+			rmq[i][0] = a[i];
+		}
+
+		for (int j = 1; j <= k; ++j){
+			for (int i = 0; i + (1LL << j) <= a.size(); ++i){
+				st[i][j] = st[i][j - 1] + st[i + (1LL << (j - 1))][j - 1];
+				rmq[i][j] = min(rmq[i][j - 1], rmq[i + (1LL << (j - 1))][j - 1]);
+			}
+		}
+	}
+
+	int sum(int l, int r){
+		int sum = 0;
+		for (int j = k; j > -1; --j){
+			if ((1LL << j) <= r - l + 1){
+				sum += st[l][j];
+				l += (1LL << j);
+			}
+		}
+		return sum;
+	}
+
+	int mini(int L, int R){
+		int j = logaritam[R - L + 1];
+		int minimum = min(rmq[L][j], rmq[R - (1 << j) + 1][j]);
+		return minimum;
+	}
+};
+sparse<131072> tabla;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>sparse_table</tabTrigger> -->
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
