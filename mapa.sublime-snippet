@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+struct HASH{
+  size_t operator()(const pair<int,int>&x)const{
+    return hash<long long>()(((long long)x.first)^(((long long)x.second)<<32));
+  }
+};
+
+void fast(){
+	mapa.reserve(131072);
+	mp.max_load_factor(0.25);
+}
+unordered_map<pi, int, HASH> mp;		
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>mapa.sublime-snippet</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
