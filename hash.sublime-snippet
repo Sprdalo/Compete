@@ -1,0 +1,24 @@
+<snippet>
+	<content><![CDATA[
+//define int as long long!!!!
+const int b = 137;
+const int mod = 1e9+7;
+int fhash(string s){
+	int sol = 0, p = 1;
+	
+	for (auto& i : s){
+		sol += (i * p) % mod;
+		sol %= mod;
+
+		p *= b;
+		p % mod;
+	}
+
+	return sol;
+}		
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>hash</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
