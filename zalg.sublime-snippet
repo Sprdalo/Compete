@@ -43,7 +43,7 @@ vi zalg(string s){
 //Ako je potrebno promeni special karakter u neku drugu glupost koja sigurno nije u zad
 //Vraca niz koji sadrzi pozicije niza gde pocinju patterni u textu
 vi match(string pattern, string text){
-	string s = pattern + "$" + text;
+	string s = pattern + "+" + text;
 
 	vi z = zalg(s), res;
 
