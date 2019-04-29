@@ -4,7 +4,10 @@
 
 using namespace std;
 
+#define int ll
+#define double ld
 typedef long long ll;
+typedef long double ld;
 typedef pair<int, int> pi;
 typedef pair<ll, ll> pl;
 typedef vector<int> vi;
@@ -16,7 +19,7 @@ typedef vector<string> vs;
 typedef vector<pi> vp;
 typedef vector<pl> vpl;
 
-int main()
+signed main()
 {
 
 }
