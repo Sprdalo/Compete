@@ -1,63 +1,45 @@
 <snippet>
 	<content><![CDATA[
-//Vreme i memorija O(n + m)
+struct zalg{
+    //Racuna Z niz 
+    vi init(string t){
+        int len = t.length();
 
-//Zalg je skraceno z-algorithm dont judge :(
-//Popunjava Z niz:
-vi zalg(string s){
-	int n = s.length();
-	vi z(n, 0);
+        vi z(len, 0), sol;
+        int l = 0, r = 0;
+        for (int i = 1; i < len; ++i){
+            if (i < r){
+                z[i] = min(z[i - 1], r - i);
+            }
 
-	int l = 0, r = 0;
-	for (int k = 1; k < n; ++k){
-		if (k > r){
-			l = k;
-			r = k;
+            while(i + z[i] < len && t[i] == t[i + z[i]]){
+                ++z[i];
+            }
 
-			while(r < n && s[r] == s[r - l])
-				++r;
+            if (i + z[i] > r){
+                l = i;
+                r = i + z[i];
+            }
+        }
+    }
 
-			z[k] = r - l;
-			--r;
-		} else {
-			//Sadagledamo z-box
-			int k1 = k - l;
+    //Nalazi sve pozicije gde se p nalazi u s
+    vi find(string s, string p){
+        string t = p + s;
 
-			//Ako ne iskace van desne granice box-a kopiraj samo
-			//Ako iskace onda proveri jos koliko se poklapaju
-			if (z[k1] < r - k + 1){
-				z[k] = z[k1];
-			} else {
-				l = k;
-				while(r < n && s[r] == s[r - l])
-					++r;
+        vi z = init(t), sol;    
+        int m = p.length(), n = s.length(), len = t.length();
 
-				z[k] = r - l;
-				--r;
-			}
-		}
-	}
-	return z;
-}
-
-//Ako je potrebno promeni special karakter u neku drugu glupost koja sigurno nije u zad
-//Vraca niz koji sadrzi pozicije niza gde pocinju patterni u textu
-vi match(string pattern, string text){
-	string s = pattern + "+" + text;
-
-	vi z = zalg(s), res;
-
-	int len = pattern.length();
-	for (int i = 0; i < z.size(); ++i){
-		if (z[i] == len)
-			res.push_back(i - len - 1);
-	}
-
-	return res;
-}
+        for (int i = 1; i < n + m; ++i){
+            if (z[i] >= m){
+                sol.push_back(i - m);
+            }
+        }
+    }
+};
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>zalg</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.cpp</scope> -->
+	<!-- <scope>source.python</scope> -->
 </snippet>
