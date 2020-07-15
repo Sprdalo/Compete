@@ -6,11 +6,11 @@ struct HASH{
   }
 };
 
+unordered_map<pi, int, HASH> mapa;
 void fast(){
 	mapa.reserve(131072);
-	mp.max_load_factor(0.25);
-}
-unordered_map<pi, int, HASH> mp;		
+	mapa.max_load_factor(0.25);
+}		
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>mapa.sublime-snippet</tabTrigger>
