@@ -1,0 +1,29 @@
+<snippet>
+	<content><![CDATA[
+
+//Slozenost O(|E| + |V|)
+void dfs(int x, int p = 0){
+	vis[x] = 1;
+
+	tin[x] = low[x] = ++timer;
+
+	for (auto& i : e[x]){
+		if (i == p) continue;
+		if (!vis[i]){
+			dfs(i, x);
+			low[x] = min(low[x], low[i]);
+
+			if (low[i] > tin[x])
+				bridges.push_back({x, i});
+		} else {
+			low[x] = min(low[x], tin[i]);
+		}
+	}
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>bridges</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
