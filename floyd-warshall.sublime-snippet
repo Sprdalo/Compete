@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+//d[u][v] = inf, osim ako u,v nisu susedi (onda tezina grane)
+//d[x][x] = 0
+
+for (int k = 1; k <= n; ++k){
+	for (int i = 1; i <= n; ++i){
+		for (int j = 1; j <= n; ++j){
+			if (d[i][k] < INT64_MAX && d[k][j] < INT64_MAX)
+				d[i][j] = min(d[i][k] + d[k][j], d[i][j]);
+		}
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>floyd-warshall</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
