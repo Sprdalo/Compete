@@ -1,0 +1,109 @@
+<snippet>
+	<content><![CDATA[
+
+template<int MAXN>
+struct segtree{
+    
+    struct update{
+        int x;
+
+        update(int x = 0) : x(x){}
+
+        update& operator+=(const update& other){
+            x += other.x;
+            return *this;
+        }
+
+        update operator+(const update& other){
+            update tmp = *this;
+            return tmp += other;
+        }
+    };
+
+    struct node{
+        int x, l, r;
+        update y;
+
+        node(int x = 0, int l = 0, int r = 0) : x(x), l(l), r(r) {}
+
+        node& operator+= (const node& other){
+            x += other.x;
+            return *this;
+        }
+
+        node& operator+ (const node& other){
+            node tmp = *this;
+            return tmp += other;
+        }
+
+        node& operator+= (const update& other){
+            x += other.x * (r - l + 1);
+            return *this;
+        }
+
+        node& operator+ (const update& other){
+            node tmp = *this;
+            return tmp += other;
+        }
+    };
+
+    node a[2 * MAXN];
+    update lazy[2 * MAXN];
+
+    void init(){
+        for (int i = 1; i <= MAXN; ++i){
+            a[i+MAXN-1] = node{0,i,i};
+        }
+        for (int i = MAXN - 1; i > -1; --i){
+            a[i] = a[2 * i] + a[2 * i + 1];
+            a[i].l = a[2 * i].l;
+            a[i].r = a[2 * i + 1].r;
+        }
+    }
+
+    void push(int i){
+        if (lazy[i].x == 0) return;
+
+        a[i] += lazy[i];
+        if (i < MAXN){
+            lazy[2 * i] += lazy[i];
+            lazy[2 * i + 1] += lazy[i];
+        }
+
+        lazy[i] = update{};
+    }
+
+    void add(int l, int r, update v, int pos = 1, int L = 1, int R = MAXN){
+        push(pos);
+
+        if (l > R || L > r) return;
+        if (l <= L && R <= r){
+            lazy[pos] += v;
+            push(pos);
+            return;
+        }
+
+        int mid = (L + R) / 2;
+        add(l,r,v,2*pos,L,mid);
+        add(l,r,v,2*pos+1,mid+1,R);
+
+        a[pos] = a[pos * 2] + a[pos * 2 + 1];
+    }
+
+    node get(int l, int r, int pos = 1, int L = 1, int R = MAXN){
+        push(pos);
+        if (l > R || L > r) return node{};
+        if (l <= L && R <= r) return a[pos];
+
+        int mid = (L + R) / 2;
+        return get(l,r,2*pos,L,mid) + get(l,r,2*pos+1,mid+1,R);
+    }
+};
+segtree<131072> drvo;
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>lazy_segtree</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
