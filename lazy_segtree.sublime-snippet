@@ -1,6 +1,7 @@
 <snippet>
 	<content><![CDATA[
-
+//Jako je vazno da uvek bude levo + desno dete
+//Ako je potrebno drugacije (zasto?) menjati node operator+
 template<int MAXN>
 struct segtree{
     
@@ -43,6 +44,7 @@ struct segtree{
 
         node& operator+ (const update& other){
             node tmp = *this;
+            tmp.r = other.r;
             return tmp += other;
         }
     };
@@ -100,7 +102,6 @@ struct segtree{
     }
 };
 segtree<131072> drvo;
-
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>lazy_segtree</tabTrigger>
