@@ -1,0 +1,14 @@
+{
+    "cmd": ["g++", "-o", "${file_path}/${file_base_name}.exe", "-static-libgcc", "-static-libstdc++", "*.cpp"],
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "working_dir": "${file_path}",
+    "selector": "source.c, source.cpp, source.c++",
+    "path": "c:/MinGW/bin",
+    "shell": true,
+    "variants": [
+        {
+            "name": "Run",
+            "cmd": ["g++", "-o", "${file_path}/${file_base_name}.exe", "-static-libgcc", "-static-libstdc++", "*.cpp", "&", "${file_path}/${file_base_name}.exe"]
+        }
+    ]
+}
